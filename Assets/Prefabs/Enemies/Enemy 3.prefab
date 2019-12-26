@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9150664115178917541}
   - component: {fileID: 9150664115178917545}
   m_Layer: 0
-  m_Name: Enemy 2
+  m_Name: Enemy 3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,8 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c7fd521a4053c41a49b76d18b1c36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 20
-  scoreAmount: 20
+  vida: 30
+  scoreAmount: 30
   velocity: 1
   deathParticle: {fileID: 2084662802430824215, guid: f5cf95d7d7e2b964dba17c69ece59e00,
     type: 3}

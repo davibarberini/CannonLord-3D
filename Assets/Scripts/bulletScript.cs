@@ -8,21 +8,26 @@ public class bulletScript : MonoBehaviour
     float velocity = 0f;
     float damage = 0f;
     Vector3 initialPos;
+    Transform t;
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        initialPos = transform.position;
+        t = GetComponent<Transform>();
+        rb = GetComponent<Rigidbody>();
+        initialPos = t.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         //Move o tiro para frente, de acordo com a sua rotacão
-        transform.position += transform.forward * velocity * Time.deltaTime;
+        rb.velocity = t.forward * velocity;
+        //t.position += t.forward * velocity * Time.deltaTime;
 
         //Se o tiro mover mais do que o alcance dele, ele é destruido
-        if(Vector3.Distance(initialPos, transform.position) > range)
+        if(Vector3.Distance(initialPos, t.position) > range)
         {
             Destroy(gameObject);
         } 
@@ -42,7 +47,7 @@ public class bulletScript : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             enemyScript enScript = collision.gameObject.GetComponent<enemyScript>();
-            enScript.vida -= damage;
+            enScript.TakeDamage(damage);
             enScript.CheckColor();
             Destroy(gameObject);
         }

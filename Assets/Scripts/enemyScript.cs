@@ -10,6 +10,7 @@ public class enemyScript : MonoBehaviour
     public ParticleSystem deathParticle;
 
     Renderer rend;
+    ParticleSystemRenderer particleRend;
     Transform t;
     GameObject[] wavePoints;
 
@@ -24,6 +25,7 @@ public class enemyScript : MonoBehaviour
     {
         t = GetComponent<Transform>();
         rend = GetComponent<Renderer>();
+        particleRend = deathParticle.GetComponent<ParticleSystemRenderer>();
         CheckColor();
     }
 
@@ -35,8 +37,8 @@ public class enemyScript : MonoBehaviour
         {
             managerScript.addScore(scoreAmount);
             managerScript.checkWave();
-            ParticleSystem particle = Instantiate(deathParticle, t.position, Quaternion.identity);
-            Destroy(particle.gameObject, 3f);
+            /*ParticleSystem particle = Instantiate(deathParticle, t.position, Quaternion.identity);
+            Destroy(particle.gameObject, 3f);*/
             Destroy(gameObject);
         }
 
@@ -82,6 +84,16 @@ public class enemyScript : MonoBehaviour
     }
 
 
+    //Faz o inimigo receber dano
+    public void TakeDamage(float amount)
+    {
+        ParticleSystem particle = Instantiate(deathParticle, t.position, Quaternion.identity);
+        CheckParticleColors(particle);
+        Destroy(particle.gameObject, 3f);
+        vida -= amount;
+    }
+
+
     //Muda a cor do inimigo de acordo com a sua vida atual
     public void CheckColor()
     {
@@ -98,6 +110,24 @@ public class enemyScript : MonoBehaviour
             rend.material.SetColor("_Color", Color.yellow);
         }
 
+    }
+
+    public void CheckParticleColors(ParticleSystem particle)
+    {
+        particleRend = particle.GetComponent<ParticleSystemRenderer>();
+        if (vida <= 10)
+        {
+            particleRend.material.SetColor("_Color", Color.red);
+        }
+        else if (vida <= 20)
+        {
+            particleRend.material.SetColor("_Color", Color.green);
+        }
+        else if (vida <= 30)
+        {
+            
+            particleRend.material.SetColor("_Color", Color.yellow);
+        }
     }
 
 }

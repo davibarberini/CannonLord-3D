@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public GameObject bullet;
+    public ParticleSystem muzzleFlash;
     public bool automatic;
     public float fireRate;
     public float range;
@@ -68,8 +69,14 @@ public class PlayerController : MonoBehaviour
     {
         //Instancia o tiro com a rotação do canhão
         Instantiate(bullet, t.position, t.rotation).GetComponent<bulletScript>().setAtributes(range, bulletVelocity, damage);
+
+        //Instancia a particula do muzzle
+        Vector3 muzzlePos = t.position + (t.forward * 8);
+        ParticleSystem muzzle = Instantiate(muzzleFlash, muzzlePos, t.rotation);
+        Destroy(muzzle.gameObject, 0.5f);
     }
 
+    //Muda os atributos do canhão
     void SetWeapon(bool auto, float fR, float rng, float bulletVel, float dmg)
     {
         automatic = auto;

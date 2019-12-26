@@ -7,13 +7,20 @@ public class RouteController : MonoBehaviour
     public WaveController waveScript;
     public int loops;
 
+    Transform t;
     GameObject[] enemies;
+    GameObject[] wp;
 
     float spawnCount = 0;
     int enemiesCount = 0;
     int enemiesNumber = 5;
     bool canSpawn = true;
 
+    private void Start()
+    {
+        t = GetComponent<Transform>();
+        wp = GetAllChilds(gameObject);
+    }
 
     // Update is called once per frame
     void Update()
@@ -21,9 +28,8 @@ public class RouteController : MonoBehaviour
         //Se o count for maior que o tempo entre os inimigos, spawna um inimigo e define os wavepoints dele
         if (spawnCount >= waveScript.enemyCooldown && canSpawn)
         {
-            GameObject[] wp = GetAllChilds(gameObject);
             int randomEnemy = Random.Range(0, enemies.Length);
-            Instantiate(enemies[randomEnemy], transform.position, Quaternion.identity).GetComponent<enemyScript>().SetWavePoints(wp, loops);
+            Instantiate(enemies[randomEnemy], t.position, Quaternion.identity).GetComponent<enemyScript>().SetWavePoints(wp, loops);
 
             enemiesCount += 1;
             spawnCount = 0;
