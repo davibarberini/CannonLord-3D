@@ -105,4 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 10
+  scoreAmount: 10
   velocity: 1
+  deathParticle: {fileID: 2084662802430824215, guid: f5cf95d7d7e2b964dba17c69ece59e00,
+    type: 3}
