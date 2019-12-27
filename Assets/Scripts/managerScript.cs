@@ -27,7 +27,7 @@ public class managerScript : MonoBehaviour
     void Update()
     {
         //Instancia a primeira wave quando o count for maior que o waveCooldown
-        if(waveCount >= waveCooldown && waveDone)
+        if (waveCount >= waveCooldown && waveDone)
         {
             int r = Random.Range(0, waves.Length);
             currentWave = Instantiate(waves[r], transform.position, Quaternion.identity);
@@ -59,4 +59,5 @@ public class managerScript : MonoBehaviour
             Debug.Log("Entrou");
         }
     }
+
 }

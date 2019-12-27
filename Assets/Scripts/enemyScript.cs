@@ -32,45 +32,49 @@ public class enemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Se a vida do inimigo for abaixo de zero, ele é destruido
-        if(vida <= 0)
+        //Se o jogo não estiver pausado
+        if (!PauseMenuScript.paused)
         {
-            managerScript.addScore(scoreAmount);
-            managerScript.checkWave();
-            /*ParticleSystem particle = Instantiate(deathParticle, t.position, Quaternion.identity);
-            Destroy(particle.gameObject, 3f);*/
-            Destroy(gameObject);
-        }
-
-        //Move o inimigo até o wavepoint
-        if (!stopLoop)
-        {
-            t.position = Vector3.MoveTowards(t.position, wavePoints[count].transform.position, velocity);
-        }
-        else
-        {
-            t.position += t.forward * velocity * 100 * Time.deltaTime;
-            countToDestroy += Time.deltaTime;
-            if(countToDestroy >= 2f)
+            //Se a vida do inimigo for abaixo de zero, ele é destruido
+            if (vida <= 0)
             {
+                managerScript.addScore(scoreAmount);
                 managerScript.checkWave();
+                /*ParticleSystem particle = Instantiate(deathParticle, t.position, Quaternion.identity);
+                Destroy(particle.gameObject, 3f);*/
                 Destroy(gameObject);
             }
-        }
-        
 
-        //Muda o wavePoint quando o inimigo chegar nele
-        if(Vector3.Distance(t.position, wavePoints[count].transform.position) < 0.1f)
-        {
-            count += 1;
-            if(count >= wavePoints.Length)
+            //Move o inimigo até o wavepoint
+            if (!stopLoop)
             {
-                count = 0;
-                voltas += 1;
-
-                if(voltas > maxVoltas && !stopLoop)
+                t.position = Vector3.MoveTowards(t.position, wavePoints[count].transform.position, velocity);
+            }
+            else //O inimigo sobe em linha reta e se auto destroi depois de 2 segundos
+            {
+                t.position += t.forward * velocity * 100 * Time.deltaTime;
+                countToDestroy += Time.deltaTime;
+                if (countToDestroy >= 2f)
                 {
-                    stopLoop = true;
+                    managerScript.checkWave();
+                    Destroy(gameObject);
+                }
+            }
+
+
+            //Muda o wavePoint quando o inimigo chegar nele
+            if (Vector3.Distance(t.position, wavePoints[count].transform.position) < 0.1f)
+            {
+                count += 1;
+                if (count >= wavePoints.Length)
+                {
+                    count = 0;
+                    voltas += 1;
+
+                    if (voltas > maxVoltas && !stopLoop)
+                    {
+                        stopLoop = true;
+                    }
                 }
             }
         }
@@ -100,14 +104,17 @@ public class enemyScript : MonoBehaviour
         if(vida <= 10)
         {
             rend.material.SetColor("_Color", Color.red);
+            t.localScale = new Vector3(4, 4, 4);
         }
         else if(vida <= 20)
         {
             rend.material.SetColor("_Color", Color.green);
+            t.localScale = new Vector3(5, 5, 5);
         }
         else if (vida <= 30)
         {
             rend.material.SetColor("_Color", Color.yellow);
+            t.localScale = new Vector3(6, 6, 6);
         }
 
     }

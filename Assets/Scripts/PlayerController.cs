@@ -26,30 +26,34 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Chama a função para rotacionar o canhão
-        Movement();
+        //Se o jogo não estiver pausado
+        if (!PauseMenuScript.paused)
+        {
+            //Chama a função para rotacionar o canhão
+            Movement();
 
-        //Se o canhao for automático
-        if (automatic)
-        {
-            //Se o botão Fire1 estiver pressionado e o tempo for maior do que o cooldown do tiro anterior
-            if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+            //Se o canhao for automático
+            if (automatic)
             {
-                //Seta o cooldown do tiro
-                nextTimeToFire = Time.time + 1f / fireRate;
-                //Chama a função para atirar
-                Shoot();
+                //Se o botão Fire1 estiver pressionado e o tempo for maior do que o cooldown do tiro anterior
+                if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
+                {
+                    //Seta o cooldown do tiro
+                    nextTimeToFire = Time.time + 1f / fireRate;
+                    //Chama a função para atirar
+                    Shoot();
+                }
             }
-        }
-        else
-        {
-            //Se o botão Fire1 for pressionado e o tempo for maior do que o cooldown do tiro anterior
-            if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
+            else
             {
-                //Seta o cooldown do tiro
-                nextTimeToFire = Time.time + 1f / fireRate;
-                //Chama a função para atirar
-                Shoot();
+                //Se o botão Fire1 for pressionado e o tempo for maior do que o cooldown do tiro anterior
+                if (Input.GetButtonDown("Fire1") && Time.time >= nextTimeToFire)
+                {
+                    //Seta o cooldown do tiro
+                    nextTimeToFire = Time.time + 1f / fireRate;
+                    //Chama a função para atirar
+                    Shoot();
+                }
             }
         }
     }
