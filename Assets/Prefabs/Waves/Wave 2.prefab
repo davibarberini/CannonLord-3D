@@ -170,6 +170,8 @@ MonoBehaviour:
   - {fileID: 9150664115178917542, guid: 3558b0b5bc3b39740bdfa142c24d9250, type: 3}
   - {fileID: 9150664115178917542, guid: 1bae59709f4633642bf35224a0bc3515, type: 3}
   - {fileID: 9150664115178917542, guid: 6228a69bc2be2c447b3fb838d013d5ed, type: 3}
+  - {fileID: 9150664115178917542, guid: 693cb8f33abfcd3478a3d598ccaf52f9, type: 3}
+  - {fileID: 9150664115178917542, guid: cbd7109665234cc4e8ea763da7fe1a31, type: 3}
   enemyCooldown: 0.4
   enemiesNumber: 5
 --- !u!1 &5786485426806073649

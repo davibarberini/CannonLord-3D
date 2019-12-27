@@ -1056,11 +1056,11 @@ MonoBehaviour:
   bullet: {fileID: 6280790957422740573, guid: 2bad1d82c697d794f94f6492c136f72e, type: 3}
   muzzleFlash: {fileID: 1730275217032833016, guid: e3f37129bb401904fb9695844780c662,
     type: 3}
-  automatic: 1
-  fireRate: 5
+  automatic: 0
+  fireRate: 2
   range: 200
   bulletVelocity: 200
-  damage: 20
+  damage: 10
 --- !u!1 &1699088924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1402,7 +1402,7 @@ MonoBehaviour:
   - {fileID: 4921727009335768936, guid: 0537e5d37cab5034c906a3d6a3c0f045, type: 3}
   scoreTXT: {fileID: 176399474}
   waveCooldown: 1
-  level: 3
+  level: 1
 --- !u!114 &1826547487
 MonoBehaviour:
   m_ObjectHideFlags: 0
