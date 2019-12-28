@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenuScript : MonoBehaviour
 {
     public GameObject pauseMenu;
-    public GameObject player;
+    public PlayerController player;
     public static bool paused;
 
 
@@ -48,5 +48,48 @@ public class PauseMenuScript : MonoBehaviour
     public void goToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+
+    public void buyDamage(UpgradeScript upScript)
+    {
+        if (checkPrice(upScript.GetPrice()))
+        {
+            player.damage += 10;
+        }
+    }
+
+    public void buyVelocity(UpgradeScript upScript)
+    {
+        if (checkPrice(upScript.GetPrice()))
+        {
+            player.bulletVelocity += 10;
+        }
+    }
+
+    public void buyFireRate(UpgradeScript upScript)
+    {
+        if (checkPrice(upScript.GetPrice()))
+        {
+            player.fireRate += 1;
+        }
+    }
+
+    public void buyAutomatic(UpgradeScript upScript)
+    {
+        if (checkPrice(upScript.GetPrice()))
+        {
+            player.automatic = true;
+        }
+    }
+
+    bool checkPrice(int p)
+    {
+        if (managerScript.score >= p)
+        {
+            managerScript.score -= p;
+            return true;
+        }
+        return false;
     }
 }

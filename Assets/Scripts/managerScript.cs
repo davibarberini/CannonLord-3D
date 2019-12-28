@@ -10,7 +10,7 @@ public class managerScript : MonoBehaviour
     public float waveCooldown;
     public int level;
 
-    static int score;
+    public static int score;
     static bool waveDone;
 
     float waveCount = 0;
@@ -19,7 +19,7 @@ public class managerScript : MonoBehaviour
     private void Start()
     {
         waveDone = true;
-        score = 0;
+        score = 10000;
         currentWave = null;
     }
 
@@ -42,7 +42,7 @@ public class managerScript : MonoBehaviour
         }
 
         //Define o texto do score no canvas
-        scoreTXT.text = "Score: " + score;
+        scoreTXT.text = "Money: $" + score;
     }
 
     public static void addScore(int n)
