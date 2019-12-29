@@ -48,7 +48,6 @@ public class bulletScript : MonoBehaviour
         {
             enemyScript enScript = collision.gameObject.GetComponent<enemyScript>();
             enScript.TakeDamage(damage);
-            enScript.CheckColor();
             Destroy(gameObject);
         }
     }

@@ -42,5 +42,18 @@ public class WaveController : MonoBehaviour
         }
     }
 
+    public bool enemiesSpawning()
+    {
+        bool temp = false;
+        for(int e=0; e < routes.Length; e++)
+        {
+            if (routes[e].GetComponent<RouteController>().GetCanSpawn())
+            {
+                temp = true;
+            }
+        }
+        return temp;
+    }
+
     
 }

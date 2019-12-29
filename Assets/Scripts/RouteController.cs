@@ -61,4 +61,9 @@ public class RouteController : MonoBehaviour
         return childs;
     }
 
+    public bool GetCanSpawn()
+    {
+        return canSpawn;
+    }
+
 }

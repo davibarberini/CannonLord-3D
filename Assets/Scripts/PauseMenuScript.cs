@@ -53,33 +53,45 @@ public class PauseMenuScript : MonoBehaviour
 
     public void buyDamage(UpgradeScript upScript)
     {
-        if (checkPrice(upScript.GetPrice()))
+        int price = upScript.GetPrice();
+        if (checkPrice(price) && upScript.canBuy())
         {
-            player.damage += 10;
+            player.damage += upScript.GetUpgradeAmount();
+            managerScript.score -= price;
+            upScript.BuyUpgrade();
         }
     }
 
     public void buyVelocity(UpgradeScript upScript)
     {
-        if (checkPrice(upScript.GetPrice()))
+        int price = upScript.GetPrice();
+        if (checkPrice(price) && upScript.canBuy())
         {
-            player.bulletVelocity += 10;
+            player.bulletVelocity += upScript.GetUpgradeAmount();
+            managerScript.score -= price;
+            upScript.BuyUpgrade();
         }
     }
 
     public void buyFireRate(UpgradeScript upScript)
     {
-        if (checkPrice(upScript.GetPrice()))
+        int price = upScript.GetPrice();
+        if (checkPrice(price) && upScript.canBuy())
         {
-            player.fireRate += 1;
+            player.fireRate += upScript.GetUpgradeAmount();
+            managerScript.score -= price;
+            upScript.BuyUpgrade();
         }
     }
 
     public void buyAutomatic(UpgradeScript upScript)
     {
-        if (checkPrice(upScript.GetPrice()))
+        int price = upScript.GetPrice();
+        if (checkPrice(price) && upScript.canBuy())
         {
             player.automatic = true;
+            managerScript.score -= price;
+            upScript.BuyUpgrade();
         }
     }
 
@@ -87,7 +99,6 @@ public class PauseMenuScript : MonoBehaviour
     {
         if (managerScript.score >= p)
         {
-            managerScript.score -= p;
             return true;
         }
         return false;

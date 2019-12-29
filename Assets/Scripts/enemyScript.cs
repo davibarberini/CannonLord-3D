@@ -29,9 +29,7 @@ public class enemyScript : MonoBehaviour
         t = GetComponent<Transform>();
         rend = GetComponent<Renderer>();
         particleRend = deathParticle.GetComponent<ParticleSystemRenderer>();
-
         CheckColor();
-
         maxVida = vida;
     }
 
@@ -63,6 +61,10 @@ public class enemyScript : MonoBehaviour
                 if (countToDestroy >= 2f)
                 {
                     managerScript.checkWave();
+                    if(managerScript.vida > 0)
+                    {
+                        managerScript.vida -= (int) vida;
+                    }
                     Destroy(gameObject);
                 }
             }
@@ -104,6 +106,7 @@ public class enemyScript : MonoBehaviour
         CheckParticleColors(particle);
         Destroy(particle.gameObject, 3f);
         vida -= amount;
+        CheckColor();
     }
 
     //Muda a barra de vida de acordo com a vida atual
@@ -148,6 +151,7 @@ public class enemyScript : MonoBehaviour
         }
     }
 
+    //Muda a cor da particula de acordo com a sua vida atual
     public void CheckParticleColors(ParticleSystem particle)
     {
         particleRend = particle.GetComponent<ParticleSystemRenderer>();
