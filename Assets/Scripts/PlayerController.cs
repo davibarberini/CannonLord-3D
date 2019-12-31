@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject bullet;
     public ParticleSystem muzzleFlash;
+    public AudioSource audioSource;
+    public AudioClip tiroSound;
     public bool automatic;
     public float fireRate;
     public float range;
@@ -71,6 +73,9 @@ public class PlayerController : MonoBehaviour
 
     void Shoot()
     {
+        //Faz o som do tiro
+        audioSource.PlayOneShot(tiroSound, 0.2f);
+
         //Instancia o tiro com a rotação do canhão
         Instantiate(bullet, t.position, t.rotation).GetComponent<bulletScript>().setAtributes(range, bulletVelocity, damage);
 

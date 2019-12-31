@@ -44,6 +44,7 @@ public class bulletScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //Se colidir com o inimigo, chama a funcao dele para receber dano e destroy o tiro
         if (collision.gameObject.tag == "Enemy")
         {
             enemyScript enScript = collision.gameObject.GetComponent<enemyScript>();

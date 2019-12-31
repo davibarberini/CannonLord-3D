@@ -359,3 +359,7 @@ MonoBehaviour:
   deathParticle: {fileID: 2084662802430824215, guid: f5cf95d7d7e2b964dba17c69ece59e00,
     type: 3}
   lifeBar: {fileID: 4236789939780543848}
+  takingDamageSound: {fileID: 8300000, guid: 0b3aed1b9043b0341a32a9e7c7d9adac, type: 3}
+  dyingSound: {fileID: 8300000, guid: aa86cc271bf56f14a85c8da2f5b286ad, type: 3}
+  playerDamageSound: {fileID: 8300000, guid: b831a43272cd617478052117e995f346, type: 3}
+  spawnSound: {fileID: 8300000, guid: cb16073980d1c1f4a83f674829351176, type: 3}

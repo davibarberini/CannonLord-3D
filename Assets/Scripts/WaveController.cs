@@ -30,6 +30,7 @@ public class WaveController : MonoBehaviour
         {
             routeEnemies[e] = enemies[e];
         }
+        //Chama a funcao para definir a rota dos inimigos
         SetRouteEnemies();
     }
 
@@ -42,6 +43,7 @@ public class WaveController : MonoBehaviour
         }
     }
 
+    //Funcao que retorna se alguma das rotas dessa wave tem inimigos spawnando
     public bool enemiesSpawning()
     {
         bool temp = false;

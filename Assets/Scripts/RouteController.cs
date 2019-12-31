@@ -34,6 +34,7 @@ public class RouteController : MonoBehaviour
             enemiesCount += 1;
             spawnCount = 0;
 
+            //Se chegou no limite de inimigos spawnados, para de spawnar
             if(enemiesCount >= enemiesNumber)
             {
                 canSpawn = false;
@@ -61,6 +62,7 @@ public class RouteController : MonoBehaviour
         return childs;
     }
 
+    //Funcao para saber se a rota está spawnando inimigos ou não
     public bool GetCanSpawn()
     {
         return canSpawn;

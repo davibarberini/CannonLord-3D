@@ -10,6 +10,8 @@ public class enemyScript : MonoBehaviour
     public float velocity;
     public ParticleSystem deathParticle;
     public Image lifeBar;
+    public AudioClip takingDamageSound, dyingSound, playerDamageSound, spawnSound;
+    AudioSource audioSource;
 
     Renderer rend;
     ParticleSystemRenderer particleRend;
@@ -26,11 +28,13 @@ public class enemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GameObject.FindGameObjectWithTag("SoundMaster").GetComponent<AudioSource>();
         t = GetComponent<Transform>();
         rend = GetComponent<Renderer>();
         particleRend = deathParticle.GetComponent<ParticleSystemRenderer>();
         CheckColor();
         maxVida = vida;
+        audioSource.PlayOneShot(spawnSound, 0.3f);
     }
 
     // Update is called once per frame
@@ -42,6 +46,7 @@ public class enemyScript : MonoBehaviour
             //Se a vida do inimigo for abaixo de zero, ele é destruido
             if (vida <= 0)
             {
+                audioSource.PlayOneShot(dyingSound, 0.3f);
                 managerScript.addScore(scoreAmount);
                 managerScript.checkWave();
                 /*ParticleSystem particle = Instantiate(deathParticle, t.position, Quaternion.identity);
@@ -60,6 +65,7 @@ public class enemyScript : MonoBehaviour
                 countToDestroy += Time.deltaTime;
                 if (countToDestroy >= 2f)
                 {
+                    audioSource.PlayOneShot(playerDamageSound, 0.3f);
                     managerScript.checkWave();
                     if(managerScript.vida > 0)
                     {
@@ -102,6 +108,7 @@ public class enemyScript : MonoBehaviour
     //Faz o inimigo receber dano
     public void TakeDamage(float amount)
     {
+        audioSource.PlayOneShot(takingDamageSound, 0.1f);
         ParticleSystem particle = Instantiate(deathParticle, t.position, Quaternion.identity);
         CheckParticleColors(particle);
         Destroy(particle.gameObject, 3f);
